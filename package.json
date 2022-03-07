@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "tailwindcss -i styles/tailwind.css -o styles/style.css && tsc ./scripts/index.ts",
-    "css": "tailwindcss -i styles/tailwind.css -o styles/style.css --watch",
-    "script": "tsc ./scripts/index.ts -w"
+    "dev": "tailwindcss -i styles/tailwind.css -o dist/styles/style.css && tsc",
+    "css": "tailwindcss -i styles/tailwind.css -o dist/styles/style.css --watch",
+    "script": "tsc -w"
   },
   "repository": {
     "type": "git",
