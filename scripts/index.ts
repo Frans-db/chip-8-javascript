@@ -23,16 +23,16 @@ class Display {
 }
 
 class CPU {
-    private memory: Uint8Array;    // 4096 bytes
-    private registers: Uint8Array; // 16 bytes. 0xF is flag register
+    private memory: Uint8Array;    // 4096 8-bit values
+    private registers: Uint8Array; // 16 8-bit values. 0xF is flag register
     private stack: Uint16Array;    // 16 16-bit values
 
     private I: number;  // 16-bit memory address register
     private pc: number; // 16-bit program counter register
     private sp: number; // 8-bit stack pointer register
 
-    private delay: number; // 8-bit delay register
-    private sound: number; // 8-bit sound register
+    private dt: number; // 8-bit delay register
+    private st: number; // 8-bit sound register
 
     private display: Display;
 
@@ -45,8 +45,8 @@ class CPU {
         this.pc = 0x200;
         this.sp = 0;
 
-        this.delay = 0;
-        this.sound = 0;
+        this.dt = 0;
+        this.st = 0;
 
         this.display = new Display();
 
@@ -174,23 +174,38 @@ class CPU {
                 break;
             case 0xF:
                 switch (kk) {
-                    case 0x07:
+                    case 0x07: // Fx07 - LD Vx, DT
+                        this.registers[x] = this.dt;
                         break;
-                    case 0x0A:
+                    case 0x0A: // Fx0A - LD Vx, K
                         break;
-                    case 0x15:
+                    case 0x15: // Fx15 - LD DT, Vx
+                        this.dt = this.registers[x];
                         break;
-                    case 0x18:
+                    case 0x18: // Fx18 - LD ST, Vx
+                        this.st = this.registers[x];
                         break;
-                    case 0x1E:
+                    case 0x1E: // Fx1E - ADD I, Vx
+                        this.I = this.I + this.registers[x];
+                        this.I &= 0xFFFF;
                         break;
-                    case 0x29:
+                    case 0x29: // Fx29 - LD F, Vx
+                        this.I = this.registers[x] * 5;
                         break;
-                    case 0x33:
+                    case 0x33: // Fx33 - LD B, Vx
+                        this.memory[this.I    ] = Math.floor(this.registers[x] / 100);
+                        this.memory[this.I + 1] = Math.floor((this.registers[x] % 100) / 10)
+                        this.memory[this.I + 2] = Math.floor(this.registers[x] % 10)
                         break;
-                    case 0x55:
+                    case 0x55: // Fx55 - LD [I], Vx
+                        for (let i = 0; i <= x; i++) {
+                            this.memory[this.I + i] = this.registers[i];
+                        }
                         break;
-                    case 0x65:
+                    case 0x65: // Fx65 = LD Vx, [I]
+                        for (let i = 0; i <= x; i++) {
+                            this.registers[i] = this.memory[this.I + i];
+                        }
                         break;
                 }
                 break;
