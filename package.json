@@ -1,0 +1,27 @@
+{
+  "name": "chip-8-typescript",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "tailwindcss -i styles/tailwind.css -o styles/style.css && tsc ./scripts/index.ts",
+    "css": "tailwindcss -i styles/tailwind.css -o styles/style.css --watch",
+    "script": "tsc ./scripts/index.ts -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Frans-db/chip-8-typescript.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Frans-db/chip-8-typescript/issues"
+  },
+  "homepage": "https://github.com/Frans-db/chip-8-typescript#readme",
+  "devDependencies": {
+    "tailwindcss": "^3.0.23",
+    "tailwindcss-debug-screens": "^2.2.1",
+    "typescript": "^4.6.2"
+  }
+}
