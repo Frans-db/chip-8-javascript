@@ -7,10 +7,37 @@
     <title>CHIP-8</title>
     <link rel="stylesheet" href="./dist/styles/style.css">
 </head>
-<body>  
-    <canvas class="border-2" id="canvas" width="640" height="320"></canvas>
-    <script src="./dist/scripts/index.js"></script>
-    <input type="file" name="" id="" onchange="showFile(this)">
+<body class="font-mono">
+    <div class="flex flex-col items-center mt-10 px-2">
+        <div class="border-2 border-r-gray-300 border-b-gray-300 rounded-lg">
+            <canvas class=" w-[256px] h-[128px]" width="512" height="256" id="canvas"></canvas>
+        </div>
+        <div class="grid grid-cols-4 gap-2 mt-6">
+            <button class="text-3xl border-2 border-r-gray-300 border-b-gray-300 rounded-lg font-medium bg-gray-100 w-16 h-16">0</button>
+            <button class="text-3xl border-2 border-r-gray-300 border-b-gray-300 rounded-lg font-medium bg-gray-100 w-16 h-16">0</button>
+            <button class="text-3xl border-2 border-r-gray-300 border-b-gray-300 rounded-lg font-medium bg-gray-100 w-16 h-16">0</button>
+            <button class="text-3xl border-2 border-r-gray-300 border-b-gray-300 rounded-lg font-medium bg-gray-100 w-16 h-16">0</button>
+            <button class="text-3xl border-2 border-r-gray-300 border-b-gray-300 rounded-lg font-medium bg-gray-100 w-16 h-16">0</button>
+            <button class="text-3xl border-2 border-r-gray-300 border-b-gray-300 rounded-lg font-medium bg-gray-100 w-16 h-16">0</button>
+            <button class="text-3xl border-2 border-r-gray-300 border-b-gray-300 rounded-lg font-medium bg-gray-100 w-16 h-16">0</button>
+            <button class="text-3xl border-2 border-r-gray-300 border-b-gray-300 rounded-lg font-medium bg-gray-100 w-16 h-16">0</button>
+            <button class="text-3xl border-2 border-r-gray-300 border-b-gray-300 rounded-lg font-medium bg-gray-100 w-16 h-16">0</button>
+            <button class="text-3xl border-2 border-r-gray-300 border-b-gray-300 rounded-lg font-medium bg-gray-100 w-16 h-16">0</button>
+            <button class="text-3xl border-2 border-r-gray-300 border-b-gray-300 rounded-lg font-medium bg-gray-100 w-16 h-16">0</button>
+            <button class="text-3xl border-2 border-r-gray-300 border-b-gray-300 rounded-lg font-medium bg-gray-100 w-16 h-16">0</button>
+            <button class="text-3xl border-2 border-r-gray-300 border-b-gray-300 rounded-lg font-medium bg-gray-100 w-16 h-16">0</button>
+            <button class="text-3xl border-2 border-r-gray-300 border-b-gray-300 rounded-lg font-medium bg-gray-100 w-16 h-16">0</button>
+            <button class="text-3xl border-2 border-r-gray-300 border-b-gray-300 rounded-lg font-medium bg-gray-100 w-16 h-16">0</button>
+            <button class="text-3xl border-2 border-r-gray-300 border-b-gray-300 rounded-lg font-medium bg-gray-100 w-16 h-16">0</button>
+        </div>
+    </div>      
+
+    <input class="w-32" type="file" name="" id="" onchange="showFile(this)">
     <button onclick="toggle()">Toggle</button>
+
+
+
+    <script src="./dist/scripts/index.js"></script>
+
 </body>
 </html>

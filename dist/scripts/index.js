@@ -477,7 +477,7 @@ function step() {
     ctx.clearRect(0, 0, 200, 200);
     // render frame
     const displayGrid = display.getDisplay();
-    const size = 10;
+    const size = 8;
     for (let i = 0; i < displayGrid.length; i++) {
         const col = displayGrid[i];
         for (let j = 0; j < col.length; j++) {
