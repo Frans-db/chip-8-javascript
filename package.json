@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "tailwindcss -i styles/tailwind.css -o dist/styles/style.css && tsc",
+    "build": "tailwindcss -i styles/tailwind.css -o dist/styles/style.css && tsc",
     "css": "tailwindcss -i styles/tailwind.css -o dist/styles/style.css --watch",
     "script": "tsc -w"
   },
