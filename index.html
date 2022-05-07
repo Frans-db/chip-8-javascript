@@ -7,37 +7,82 @@
     <title>CHIP-8</title>
     <link rel="stylesheet" href="./dist/styles/style.css">
 </head>
-<body class="font-mono">
-    <div class="flex flex-col items-center mt-10 px-2">
-        <div class="border-2 border-r-gray-300 border-b-gray-300 rounded-lg">
-            <canvas class=" w-[256px] h-[128px]" width="512" height="256" id="canvas"></canvas>
+<body class="font-mono debug-screens">
+    <div class="flex flex-col">
+        <!-- Left - Register Debug -->
+        <div class="hidden">
+
         </div>
-        <div class="grid grid-cols-4 gap-2 mt-6">
-            <button class="text-3xl border-2 border-r-gray-300 border-b-gray-300 rounded-lg font-medium bg-gray-100 w-16 h-16">0</button>
-            <button class="text-3xl border-2 border-r-gray-300 border-b-gray-300 rounded-lg font-medium bg-gray-100 w-16 h-16">0</button>
-            <button class="text-3xl border-2 border-r-gray-300 border-b-gray-300 rounded-lg font-medium bg-gray-100 w-16 h-16">0</button>
-            <button class="text-3xl border-2 border-r-gray-300 border-b-gray-300 rounded-lg font-medium bg-gray-100 w-16 h-16">0</button>
-            <button class="text-3xl border-2 border-r-gray-300 border-b-gray-300 rounded-lg font-medium bg-gray-100 w-16 h-16">0</button>
-            <button class="text-3xl border-2 border-r-gray-300 border-b-gray-300 rounded-lg font-medium bg-gray-100 w-16 h-16">0</button>
-            <button class="text-3xl border-2 border-r-gray-300 border-b-gray-300 rounded-lg font-medium bg-gray-100 w-16 h-16">0</button>
-            <button class="text-3xl border-2 border-r-gray-300 border-b-gray-300 rounded-lg font-medium bg-gray-100 w-16 h-16">0</button>
-            <button class="text-3xl border-2 border-r-gray-300 border-b-gray-300 rounded-lg font-medium bg-gray-100 w-16 h-16">0</button>
-            <button class="text-3xl border-2 border-r-gray-300 border-b-gray-300 rounded-lg font-medium bg-gray-100 w-16 h-16">0</button>
-            <button class="text-3xl border-2 border-r-gray-300 border-b-gray-300 rounded-lg font-medium bg-gray-100 w-16 h-16">0</button>
-            <button class="text-3xl border-2 border-r-gray-300 border-b-gray-300 rounded-lg font-medium bg-gray-100 w-16 h-16">0</button>
-            <button class="text-3xl border-2 border-r-gray-300 border-b-gray-300 rounded-lg font-medium bg-gray-100 w-16 h-16">0</button>
-            <button class="text-3xl border-2 border-r-gray-300 border-b-gray-300 rounded-lg font-medium bg-gray-100 w-16 h-16">0</button>
-            <button class="text-3xl border-2 border-r-gray-300 border-b-gray-300 rounded-lg font-medium bg-gray-100 w-16 h-16">0</button>
-            <button class="text-3xl border-2 border-r-gray-300 border-b-gray-300 rounded-lg font-medium bg-gray-100 w-16 h-16">0</button>
+
+        <!-- Center - Display and Inputs -->
+        <div class="flex flex-col items-center mt-10 px-2">
+            <div>
+                <div class="border-2 border-r-gray-300 border-b-gray-300 rounded-lg">
+                    <canvas class="bg-gray-100 w-[256px] h-[128px]" width="512" height="256" id="canvas"></canvas>
+                </div>
+                <div class="text-xs text-gray-600 px-1">
+                    <p>Average Clock speed: <span id="herz">60</span> hz</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-4 gap-2 mt-4">
+                <button class="text-2xl border-2 rounded-lg font-medium w-16 h-16 inactive" id="1">1</button>
+                <button class="text-2xl border-2 rounded-lg font-medium w-16 h-16 inactive" id="2">2</button>
+                <button class="text-2xl border-2 rounded-lg font-medium w-16 h-16 inactive" id="3">3</button>
+                <button class="text-2xl border-2 rounded-lg font-medium w-16 h-16 inactive" id="12">C</button>
+                <button class="text-2xl border-2 rounded-lg font-medium w-16 h-16 inactive" id="4">4</button>
+                <button class="text-2xl border-2 rounded-lg font-medium w-16 h-16 inactive" id="5">5</button>
+                <button class="text-2xl border-2 rounded-lg font-medium w-16 h-16 inactive" id="6">6</button>
+                <button class="text-2xl border-2 rounded-lg font-medium w-16 h-16 inactive" id="13">D</button>
+                <button class="text-2xl border-2 rounded-lg font-medium w-16 h-16 inactive" id="7">7</button>
+                <button class="text-2xl border-2 rounded-lg font-medium w-16 h-16 inactive" id="8">8</button>
+                <button class="text-2xl border-2 rounded-lg font-medium w-16 h-16 inactive" id="9">9</button>
+                <button class="text-2xl border-2 rounded-lg font-medium w-16 h-16 inactive" id="14">E</button>
+                <button class="text-2xl border-2 rounded-lg font-medium w-16 h-16 inactive" id="10">A</button>
+                <button class="text-2xl border-2 rounded-lg font-medium w-16 h-16 inactive" id="0">0</button>
+                <button class="text-2xl border-2 rounded-lg font-medium w-16 h-16 inactive" id="11">B</button>
+                <button class="text-2xl border-2 rounded-lg font-medium w-16 h-16 inactive" id="15">F</button>
+            </div>
+
+            <div class="active hidden"></div>
         </div>
-    </div>      
 
-    <input class="w-32" type="file" name="" id="" onchange="showFile(this)">
-    <button onclick="toggle()">Toggle</button>
+        <!-- Right - General Stats and ROM -->
+        <div class="mt-8">
+            <div class="hidden">
+                <!-- <button onclick="toggle()">Toggle</button> -->
 
-
+            </div>
+            <div class="flex flex-col items-center">
+                <div class="space-y-6 border-2 border-dashed px-2 mx-2 py-4">
+                    <p class="text-sm text-gray-800">Select a ROM, upload one yourself, or enter the  <a class="underline" href="https://github.com/kripod/chip8-roms" target="_blank">URL of a ROM</a></p>
+                    <div class="flex flex-col items-start space-y-5">
+                        <div class="flex flex-col">
+                            <label class="ml-1 text-sm text-gray-600" for="rom-select">Select ROM</label>
+                            <select class="cursor-pointer appearance-none w-32 px-2 py-1 text-sm text-gray-600 bg-gray-100 rounded-lg border-2 border-r-gray-300 border-b-gray-300" name="rom-select" id="rom-select">
+                                <option value="breakout">Breakout</option>
+                                <option value="maze">Clock</option>
+                            </select>
+                        </div>
+                        <div class="flex flex-col">
+                            <label class="ml-1 text-sm text-gray-600" for="rom-upload">Upload ROM</label>
+                            <label class="cursor-pointer appearance-none w-32 px-2 py-1 text-sm text-gray-600 bg-gray-100 rounded-lg border-2 border-r-gray-300 border-b-gray-300" for="rom-upload">Choose File</label>
+                            <!-- Hidden file upload, label is used as a fake button -->
+                            <input class="hidden" type="file" name="" id="rom-upload" onchange="showFile(this)">
+                        </div>
+                        <div class="flex flex-col">
+                            <label class="ml-1 text-sm text-gray-600" for="rom-url">Use URL</label>
+                            <div class="flex">
+                                <input type="text" id="rom-url" class="appearance-none px-2 py-1 text-sm text-gray-600 rounded-l-lg border-2 border-r-1">
+                                <button class="appearance-none px-2 py-1 text-sm text-gray-600 bg-gray-100 rounded-r-lg border-2 border-l-0 border-r-gray-300 border-b-gray-300">Confirm</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="./dist/scripts/index.js"></script>
-
 </body>
 </html>

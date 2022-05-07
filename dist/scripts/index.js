@@ -33,7 +33,7 @@ class Keyboard {
         this.onNextKeyPress = null;
     }
     onKeyDown(key) {
-        if (this.onNextKeyPress) {
+        if (this.onNextKeyPress != null) {
             this.onNextKeyPress(key);
             this.onNextKeyPress = null;
         }
@@ -51,6 +51,7 @@ class Keyboard {
         return this.pressed.includes(key);
     }
     setOnKeyPress(func) {
+        this.onNextKeyPress = func;
     }
 }
 class Debugger {
@@ -58,6 +59,9 @@ class Debugger {
         this.enabled = enabled;
     }
     printOpcode(opcode) {
+        if (!this.enabled) {
+            return;
+        }
         const start = (opcode & 0xF000) >> 12;
         const end = (opcode & 0x000F);
         const x = (opcode & 0x0F00) >> 8;
@@ -431,10 +435,15 @@ class CPU {
 }
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
+const herzElement = document.getElementById("herz");
 const keyboard = new Keyboard();
 const display = new Display();
 const cpuDebugger = new Debugger(true);
 const cpu = new CPU(display, keyboard, cpuDebugger);
+const herz = 60;
+const delay = 1000 / herz;
+let previousCycleTimestamp = 0;
+let actualHerz = herz;
 let program;
 const keymap = {
     '1': 0x1,
@@ -456,23 +465,35 @@ const keymap = {
 };
 window.addEventListener('keydown', (event) => {
     const key = keymap[event.key];
-    if (key) {
+    if (key != undefined) {
         keyboard.onKeyDown(key);
+        const element = document.getElementById(key.toString());
+        if (element) {
+            element.classList.remove("inactive");
+            element.classList.add("active");
+        }
     }
 });
 window.addEventListener('keyup', (event) => {
     const key = keymap[event.key];
-    if (key) {
+    if (key != undefined) {
         keyboard.onKeyUp(key);
+        const element = document.getElementById(key.toString());
+        if (element) {
+            element.classList.remove("active");
+            element.classList.add("inactive");
+        }
     }
 });
 function toggle() {
     cpu.toggle();
 }
-function step() {
+function step(timestamp) {
     if (!ctx) {
         return;
     }
+    const difference = timestamp - previousCycleTimestamp;
+    // if (difference > delay) {
     cpu.step();
     ctx.clearRect(0, 0, 200, 200);
     // render frame
@@ -485,12 +506,19 @@ function step() {
                 ctx.fillStyle = 'black';
             }
             else {
-                ctx.fillStyle = 'white';
+                ctx.fillStyle = 'rgb(243 244 246)';
             }
             ctx.fillRect(i * size, j * size, size, size);
             ctx.stroke();
         }
     }
+    previousCycleTimestamp = timestamp;
+    if (herzElement) {
+        actualHerz = 1000 / difference;
+        // Calculate herz using a EWMA to stabilize the value somewhat
+        herzElement.innerHTML = Math.round(parseInt(herzElement.innerHTML) * 0.90 + actualHerz * 0.1).toString();
+    }
+    // }
     window.requestAnimationFrame(step);
 }
 function showFile(input) {
