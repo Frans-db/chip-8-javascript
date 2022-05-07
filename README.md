@@ -1,2 +1,2 @@
-# chip-8-typescript
-Typescript CHIP-8 emulator created following instructions from http://devernay.free.fr/hacks/chip8/C8TECH10.HTM (with help from https://www.freecodecamp.org/news/creating-your-very-own-chip-8-emulator/)
+# chip-8-javascript
+Javascript CHIP-8 emulator created following instructions from http://devernay.free.fr/hacks/chip8/C8TECH10.HTM (with help from https://www.freecodecamp.org/news/creating-your-very-own-chip-8-emulator/)
