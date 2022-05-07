@@ -2,10 +2,14 @@ class Display {
     width;
     heigth;
     display;
+    scale;
+    ctx;
 
-    constructor() {
+    constructor(ctx, scale) {
         this.width = 64;
         this.height = 32;
+        this.scale = scale;
+        this.ctx = ctx;
         this.clearDisplay();
     }
 
@@ -32,5 +36,20 @@ class Display {
         const collision = this.display[boundedX][boundedY] == 1;
         this.display[boundedX][boundedY] ^= 1;
         return collision;
+    }
+
+    drawToCanvas() {
+        for (let i = 0; i < this.display.length; i++) {
+            const col = this.display[i];
+            for (let j = 0; j < col.length; j++) {
+                if (col[j]) {
+                    this.ctx.fillStyle = 'black';
+                } else {
+                    this.ctx.fillStyle = 'rgb(243 244 246)';
+                }
+                this.ctx.fillRect(i * this.scale, j * this.scale, this.scale, this.scale);
+                this.ctx.stroke();
+            }
+        }
     }
 }

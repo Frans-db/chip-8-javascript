@@ -12,10 +12,11 @@ class CPU {
 
     display; // Display object
     keyboard; // Keyboard object
+    debug;
 
     paused; // Boolean, is execution paused
 
-    constructor(display, keyboard) {
+    constructor(display, keyboard, debug) {
         this.memory = new Uint8Array(4096);
         this.registers = new Uint8Array(16);
         this.stack = new Uint16Array(16);
@@ -31,6 +32,7 @@ class CPU {
 
         this.display = display;
         this.keyboard = keyboard;
+        this.debug = debug;
 
         this.loadSprites();
     }
@@ -56,6 +58,8 @@ class CPU {
     executeOpcode(opcode) {
         // TODO (Frans): The current way RET and CALL work makes it so the first address of the stack is never used.
         // this is according to the specification, but should this be changed?
+        this.debug.printOpcode(opcode);
+        console.log(opcode);
         this.increasePC();
         const start = (opcode & 0xF000) >> 12;
         const end = (opcode & 0x000F);
@@ -69,6 +73,7 @@ class CPU {
                 switch (nnn) {
                     case 0x0E0: // 00E0 - CLS
                         this.display.clear();
+                        this.display.drawToCanvas();
                         break;
                     case 0x0EE: // 00EE - RET
                         this.pc = this.stack[this.sp];
@@ -172,6 +177,7 @@ class CPU {
                     }
                     this.registers[0xF] = collision ? 1 : 0; 
                 }
+                this.display.drawToCanvas();
                 break;
             case 0xE:
                 switch (kk) {

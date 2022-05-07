@@ -1,7 +1,7 @@
 class Loader {
     local = ["Breakout", "Maze", "Clock"];
 
-    loadLocalROM(name) {
+    loadLocalROM(name, cpu) {
         const url = `/roms/${name}.ch8`;
         fetch(url)
             .then(response => {
@@ -11,7 +11,7 @@ class Loader {
                     for (let i = 0; i < body.length; i++) {
                         program[i] = body.charCodeAt(i);
                     }
-                    console.log(program);
+                    // cpu.loadProgram(program);
                 })
             })
             .catch(error => {
