@@ -59,7 +59,6 @@ class CPU {
         // TODO (Frans): The current way RET and CALL work makes it so the first address of the stack is never used.
         // this is according to the specification, but should this be changed?
         this.debug.printOpcode(opcode);
-        console.log(opcode);
         this.increasePC();
         const start = (opcode & 0xF000) >> 12;
         const end = (opcode & 0x000F);
@@ -251,6 +250,8 @@ class CPU {
         for (let i = 0; i < program.length; i++) {
             this.memory[0x200 + i] = program[i];
         }
+        this.pc = 0x200;
+        this.display.clearDisplay();
     }
 
     /**

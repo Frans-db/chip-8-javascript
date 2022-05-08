@@ -26,22 +26,22 @@
             </div>
 
             <div class="grid grid-cols-4 gap-2 mt-4">
-                <button class="text-2xl border-2 rounded-lg font-medium w-16 h-16 inactive" id="1">1</button>
-                <button class="text-2xl border-2 rounded-lg font-medium w-16 h-16 inactive" id="2">2</button>
-                <button class="text-2xl border-2 rounded-lg font-medium w-16 h-16 inactive" id="3">3</button>
-                <button class="text-2xl border-2 rounded-lg font-medium w-16 h-16 inactive" id="12">C</button>
-                <button class="text-2xl border-2 rounded-lg font-medium w-16 h-16 inactive" id="4">4</button>
-                <button class="text-2xl border-2 rounded-lg font-medium w-16 h-16 inactive" id="5">5</button>
-                <button class="text-2xl border-2 rounded-lg font-medium w-16 h-16 inactive" id="6">6</button>
-                <button class="text-2xl border-2 rounded-lg font-medium w-16 h-16 inactive" id="13">D</button>
-                <button class="text-2xl border-2 rounded-lg font-medium w-16 h-16 inactive" id="7">7</button>
-                <button class="text-2xl border-2 rounded-lg font-medium w-16 h-16 inactive" id="8">8</button>
-                <button class="text-2xl border-2 rounded-lg font-medium w-16 h-16 inactive" id="9">9</button>
-                <button class="text-2xl border-2 rounded-lg font-medium w-16 h-16 inactive" id="14">E</button>
-                <button class="text-2xl border-2 rounded-lg font-medium w-16 h-16 inactive" id="10">A</button>
-                <button class="text-2xl border-2 rounded-lg font-medium w-16 h-16 inactive" id="0">0</button>
-                <button class="text-2xl border-2 rounded-lg font-medium w-16 h-16 inactive" id="11">B</button>
-                <button class="text-2xl border-2 rounded-lg font-medium w-16 h-16 inactive" id="15">F</button>
+                <button class="text-2xl border-2 rounded-lg font-medium w-16 h-16 inactive" id="button-1">1</button>
+                <button class="text-2xl border-2 rounded-lg font-medium w-16 h-16 inactive" id="button-2">2</button>
+                <button class="text-2xl border-2 rounded-lg font-medium w-16 h-16 inactive" id="button-3">3</button>
+                <button class="text-2xl border-2 rounded-lg font-medium w-16 h-16 inactive" id="button-12">C</button>
+                <button class="text-2xl border-2 rounded-lg font-medium w-16 h-16 inactive" id="button-4">4</button>
+                <button class="text-2xl border-2 rounded-lg font-medium w-16 h-16 inactive" id="button-5">5</button>
+                <button class="text-2xl border-2 rounded-lg font-medium w-16 h-16 inactive" id="button-6">6</button>
+                <button class="text-2xl border-2 rounded-lg font-medium w-16 h-16 inactive" id="button-13">D</button>
+                <button class="text-2xl border-2 rounded-lg font-medium w-16 h-16 inactive" id="button-7">7</button>
+                <button class="text-2xl border-2 rounded-lg font-medium w-16 h-16 inactive" id="button-8">8</button>
+                <button class="text-2xl border-2 rounded-lg font-medium w-16 h-16 inactive" id="button-9">9</button>
+                <button class="text-2xl border-2 rounded-lg font-medium w-16 h-16 inactive" id="button-14">E</button>
+                <button class="text-2xl border-2 rounded-lg font-medium w-16 h-16 inactive" id="button-10">A</button>
+                <button class="text-2xl border-2 rounded-lg font-medium w-16 h-16 inactive" id="button-0">0</button>
+                <button class="text-2xl border-2 rounded-lg font-medium w-16 h-16 inactive" id="button-11">B</button>
+                <button class="text-2xl border-2 rounded-lg font-medium w-16 h-16 inactive" id="button-15">F</button>
             </div>
 
             <div class="active hidden"></div>
@@ -68,7 +68,7 @@
                             <label class="ml-1 text-sm text-gray-600" for="rom-upload">Upload ROM</label>
                             <label class="cursor-pointer appearance-none w-32 px-2 py-1 text-sm text-gray-600 bg-gray-100 rounded-lg border-2 border-r-gray-300 border-b-gray-300" for="rom-upload">Choose File</label>
                             <!-- Hidden file upload, label is used as a fake button -->
-                            <input class="hidden" type="file" name="" id="rom-upload" onchange="showFile(this)">
+                            <input class="hidden" type="file" name="" id="rom-upload" onchange="loader.loadUploadedROM()">
                         </div>
                         <div class="flex flex-col">
                             <label class="ml-1 text-sm text-gray-600" for="rom-url">Use URL</label>
