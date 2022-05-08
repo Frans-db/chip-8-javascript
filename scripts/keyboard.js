@@ -138,18 +138,26 @@ class HTMLKeyboard extends BasicKeyboard {
     }
 
     initializeButtons() {
-        for (let i = 0; i <= 0xF; i++) {
-            const buttonId = `${this.buttonIdentifier}-${i}`
+        for (let buttonIndex = 0; buttonIndex <= 0xF; buttonIndex++) {
+            const buttonId = `${this.buttonIdentifier}-${buttonIndex}`
             const button = document.getElementById(buttonId);
+            // Gotta do some funky stuff with timers to keep detecting a press
+            button.addEventListener('mousedown', (_) => {
+                this.onKeyDown(buttonIndex);
+            })
+            button.addEventListener('mouseup', (_) => {
+                this.onKeyUp(buttonIndex);
+            })
         }
     }
 
     onKeyDown(key) {
-        console.log(key);
+        console.log(`Pressed ${key}`);
         super.onKeyDown(key);
     }
     
     onKeyUp(key) {
+        console.log(`Released ${key}`);
         super.onKeyUp(key);
     }
 
