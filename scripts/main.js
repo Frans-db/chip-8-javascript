@@ -11,5 +11,5 @@
 //     cpu.step();
 //     window.requestAnimationFrame(step);
 // }
-// // window.requestAnimationFrame(step);
-const test = new HTMLKeyboard("button", "buttonActive", "buttonInactive");
+// const test = new InputKeyboard();
+const test = new HTMLKeyboard("button", "active", "inactive");
